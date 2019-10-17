@@ -1,4 +1,3 @@
-//Code by Nkhil P
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdlib.h>
@@ -19,55 +18,7 @@ void LCD_Display(void);
 void op(char key);
 void LCD_Startup(void);
 
-int main(void)
-{
-Circ_Init(); // Initialize the circuit
-LCD_Init(); // initialize LCD controller
-LCD_Startup();
-LCD_Clear();
-while(1)
-{
 
-key=get_key();
-switch(key)
-{
-case '1':
-case '2':
-case '3':
-case '4':
-case '5':
-case '6':
-case '7':
-case '8':
-case '9':
-case '0':cur=10*cur+get_num(key);
-    LCD_Char(key);
-    break;
-   case 'c':LCD_Clear();
-   
-ans=0;
-cur=0;
-break;
-case '+':
-case '-':
-case '*':
-case '/':if(keybuf!='n')
-op(keybuf);
-keybuf=key;
-cur=0;
-LCD_Char(key);
-break;
-case '=':if(keybuf!='n')
-op(keybuf);
-
-cur=0;
-LCD_Cmd(0xC0);
-LCD_Integer(ans);
-break;
-}
-_delay_ms(500);
-}
-}
    
    
    
